@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getProject, projects } from "../../projects";
+import { getProject, projects } from "../../../projects";
 
 type ProjectPageProps = {
   params: Promise<{

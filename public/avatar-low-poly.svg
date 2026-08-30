@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Low-poly avatar placeholder">
+  <rect width="360" height="360" fill="#263077"/>
+  <polygon points="180,18 314,96 292,274 180,342 68,274 46,96" fill="#4a57c1"/>
+  <polygon points="180,18 314,96 180,156 46,96" fill="#62e0dd"/>
+  <polygon points="46,96 180,156 68,274" fill="#38449f"/>
+  <polygon points="314,96 292,274 180,156" fill="#59205f"/>
+  <polygon points="68,274 180,156 180,342" fill="#34123b"/>
+  <polygon points="292,274 180,342 180,156" fill="#fa711e"/>
+  <circle cx="180" cy="168" r="68" fill="#fffdf8" opacity="0.94"/>
+  <path fill="#1d1b18" d="M131 151h34v13h-34zM195 151h34v13h-34zM145 204c21 17 49 17 70 0l8 11c-25 23-61 23-86 0z"/>
+</svg>
