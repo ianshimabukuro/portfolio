@@ -7,42 +7,29 @@ export const metadata: Metadata = {
 };
 
 const contributionCells = [
-  0, 2, 3, 4, 1, 2, 3, 2, 4, 3, 1, 3, 2, 4, 5, 3, 2, 1, 4, 2,
+  0, 0, 0, 0, 1, 2, 3, 2, 4, 3, 1, 3, 2, 4, 5, 3, 2, 1, 4, 2,
   3, 5, 2, 3, 4, 1, 2, 0, 3, 4, 5, 3, 2, 4, 1, 5, 3, 2, 4, 1,
   2, 4, 5, 2, 3, 1, 4, 2, 5, 3, 4, 2, 1, 3, 5, 2, 4, 1, 3, 2,
   4, 5, 2, 3, 1, 4, 3, 2, 5, 4, 1, 2, 3, 5, 4, 2, 1, 5, 3, 4,
 ];
 
-const appSlots = ["P", "T", "M", "S", "I"];
+const appSlots = ["APP", "APP", "APP", "APP", "APP"];
 
-const academics = [
-  { label: "UCI", href: "https://uci.edu/" },
-  { label: "筑波", href: "https://www.tsukuba.ac.jp/en/" },
-  { label: "EECS", href: "#profile" },
-];
+const academics = ["UCI", "TS", "EECS"];
 
-const socials = [
-  { label: "in", href: "https://www.linkedin.com/in/ianshimabukuro/" },
-  { label: "GH", href: "https://github.com/ianshimabukuro" },
-  { label: "CV", href: "mailto:jh.ians@icloud.com" },
-];
+const socials = ["in", "GH", "CV"];
 
 export default function Home() {
   return (
     <main className="n64-stage" aria-labelledby="hero-title">
-      <div className="laptop-shell" aria-hidden="true">
-        <div className="camera" />
-      </div>
-
       <section className="game-screen">
-        <div className="screen-backdrop" />
         <div className="save-window">
-          <p className="ghost-title">Open this file?</p>
 
-          <div className="file-tab">
+
+          <button className="file-tab" type="button">
             <span>File 1</span>
             <span className="tab-handle" aria-hidden="true" />
-          </div>
+          </button>
 
           <div className="profile-card">
             <div className="left-panel">
@@ -61,10 +48,10 @@ export default function Home() {
               <div className="apps-panel">
                 <h2>Apps</h2>
                 <div className="app-slots" aria-label="Shipped app placeholders">
-                  {appSlots.map((slot) => (
-                    <a href="#work" key={slot} aria-label={`Open app ${slot}`}>
+                  {appSlots.map((slot, index) => (
+                    <button type="button" key={`${slot}-${index}`} aria-label="Open app placeholder">
                       {slot}
-                    </a>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -88,9 +75,9 @@ export default function Home() {
                 <h2 id="academics-title">Academics</h2>
                 <div className="icon-row">
                   {academics.map((item) => (
-                    <a href={item.href} key={item.label}>
-                      {item.label}
-                    </a>
+                    <button type="button" key={item} aria-label={`${item} placeholder`}>
+                      {item}
+                    </button>
                   ))}
                 </div>
               </section>
@@ -99,43 +86,29 @@ export default function Home() {
                 <h2 id="socials-title">Socials</h2>
                 <div className="icon-row socials-row">
                   {socials.map((item) => (
-                    <a href={item.href} key={item.label}>
-                      {item.label}
-                    </a>
+                    <button type="button" key={item} aria-label={`${item} placeholder`}>
+                      {item}
+                    </button>
                   ))}
                 </div>
               </section>
             </div>
           </div>
 
+          <svg
+            aria-hidden="true"
+            className="profile-card-outline"
+            preserveAspectRatio="none"
+            viewBox="0 0 100 100"
+          >
+            <polygon points="0,20 50,20 50,0 100,0 100,100 0,100" />
+          </svg>
+
           <nav className="action-menu" aria-label="Start menu">
-            <a href="#profile">Learn More</a>
-            <a href="mailto:jh.ians@icloud.com">Contact Me</a>
+            <button type="button">Learn More</button>
+            <button type="button">Contact Me</button>
           </nav>
         </div>
-
-        <p className="name-plate">Ian Shimabukuro</p>
-        <div className="controller-hint" aria-hidden="true">
-          <span>A - Decide</span>
-          <i />
-          <span>B - Cancel</span>
-        </div>
-      </section>
-
-      <section className="hidden-content" id="profile" aria-labelledby="profile-title">
-        <h2 id="profile-title">Full-stack mobile developer</h2>
-        <p>
-          I build shipped iOS and React Native products with cloud, data, and
-          personal informatics systems behind them.
-        </p>
-      </section>
-
-      <section className="hidden-content" id="work" aria-labelledby="work-title">
-        <h2 id="work-title">Selected work</h2>
-        <p>
-          Independent SwiftUI apps, PaceTank, Taggie, Southern California
-          Edison, and Yazaki prototypes will plug into this file-select surface.
-        </p>
       </section>
     </main>
   );
