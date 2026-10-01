@@ -63,8 +63,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <main className="site-shell project-shell">
-      <Link className="back-link" href="/#work">
-        Back to work
+      <Link className="back-link" href="/">
+        Back home
       </Link>
 
       <article>
