@@ -45,10 +45,13 @@ export default function GitHubActivityPanel() {
   while (slots.length % 7) slots.push(null);
   const activeDays = activity.days.filter((day) => day.count > 0).length;
 
-  return <div className={`activity-content ${contributions ? "year-activity" : "month-activity"}`}>
+  return <div className={`activity-content ${contributions ? "two-month-activity" : "month-activity"}`}>
     <div className="activity-summary">
-      <p className="activity-count">{activity.total.toLocaleString()}<span>{unit}</span></p>
-      <span className="data-period">{contributions ? "PAST YEAR" : "PAST 30 DAYS"}</span>
+      <div className="activity-stats">
+        <p className="activity-count">{activity.total.toLocaleString()}<span>{unit}</span></p>
+        {typeof activity.publicRepos === "number" && <p className="repository-count">{activity.publicRepos}<span>public repos</span></p>}
+      </div>
+      <span className="data-period">{contributions ? "PAST 60 DAYS" : "PAST 30 DAYS"}</span>
     </div>
     <div className="activity-body">
       <div className="activity-calendar">
@@ -57,15 +60,12 @@ export default function GitHubActivityPanel() {
           {slots.map((day, index) => <span key={day?.date ?? `blank-${index}`} className={`activity-cell ${day ? `intensity-${day.level}` : "outside-calendar"}`} title={day ? `${dateLabel(day.date)}: ${day.count} ${unit}` : undefined} onMouseEnter={() => setHoveredDay(day)} />)}
         </div>
       </div>
-      {!contributions && <div className="activity-note">
-        <span className="live-indicator">GitHub API</span>
-        <p>{typeof activity.publicRepos === "number" ? `${activity.publicRepos} public repositories` : `${activeDays} active ${activeDays === 1 ? "day" : "days"}`}</p>
-        <span>{activity.total ? `${activeDays} active ${activeDays === 1 ? "day" : "days"} in 30 days` : "No recent public events"}{activity.limited ? " (latest 300)" : ""}.</span>
-      </div>}
-    </div>
-    <div className="activity-caption">
-      <span>{hoveredDay ? `${dateLabel(hoveredDay.date)}: ${hoveredDay.count}` : `${dateLabel(activity.from)} - ${dateLabel(activity.to)}`}</span>
-      <div className="activity-legend" aria-label="Color scale from less to more activity"><span>Less</span>{[0, 1, 2, 3, 4].map((level) => <i key={level} className={`intensity-${level}`} />)}<span>More</span></div>
+      <div className="activity-note">
+        <p>{contributions ? "Contribution activity" : `${activeDays} active ${activeDays === 1 ? "day" : "days"}`}</p>
+        <span>{contributions
+          ? activity.privateContributions ? `${activity.privateContributions} private contributions included.` : "Public contribution activity."
+          : activity.total ? `${activeDays} active ${activeDays === 1 ? "day" : "days"} in 30 days` : "No recent public events"}{activity.limited ? " (latest 300)" : ""}.</span>
+      </div>
     </div>
     <a className="github-profile-link" href={`https://github.com/${profile.github}`} target="_blank" rel="noopener noreferrer">@{profile.github}<ArrowUpRight size={14} /></a>
   </div>;

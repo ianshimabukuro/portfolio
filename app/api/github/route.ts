@@ -7,6 +7,7 @@ export const runtime = "nodejs";
 const query = `query PortfolioActivity($login: String!, $from: DateTime!, $to: DateTime!) {
   user(login: $login) {
     contributionsCollection(from: $from, to: $to) {
+      restrictedContributionsCount
       contributionCalendar {
         weeks { contributionDays { date contributionCount contributionLevel } }
       }
@@ -45,7 +46,7 @@ export async function GET() {
   if (token) {
     try {
       const from = new Date(now);
-      from.setUTCDate(from.getUTCDate() - 364);
+      from.setUTCDate(from.getUTCDate() - 59);
       from.setUTCHours(0, 0, 0, 0);
       const result = await githubRequest("graphql", {
         query,

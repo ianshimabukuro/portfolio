@@ -8,6 +8,7 @@ export type GitHubActivity = {
   fetchedAt: string;
   limited: boolean;
   publicRepos?: number;
+  privateContributions?: number;
 };
 
 const DAY_MS = 86_400_000;
@@ -22,7 +23,8 @@ export function parseContributions(value: unknown, now = new Date()): GitHubActi
   const result = record(value);
   if (result.errors) throw new Error("GitHub GraphQL request failed");
   const user = record(record(result.data).user);
-  const calendar = record(record(user.contributionsCollection).contributionCalendar);
+  const collection = record(user.contributionsCollection);
+  const calendar = record(collection.contributionCalendar);
   if (!Array.isArray(calendar.weeks)) throw new Error("Missing calendar");
   const days = calendar.weeks.flatMap((week) => {
     const entries = record(week).contributionDays;
@@ -39,9 +41,15 @@ export function parseContributions(value: unknown, now = new Date()): GitHubActi
     });
   });
   if (!days.length) throw new Error("Empty calendar");
+  const restrictedValue = collection.restrictedContributionsCount;
+  if (restrictedValue !== undefined && (typeof restrictedValue !== "number" || !Number.isInteger(restrictedValue) || restrictedValue < 0)) {
+    throw new Error("Invalid restricted contribution count");
+  }
+  const restrictedCount = typeof restrictedValue === "number" ? restrictedValue : undefined;
   return {
     source: "contributions", days, total: days.reduce((total, day) => total + day.count, 0),
     from: days[0].date, to: days[days.length - 1].date, fetchedAt: now.toISOString(), limited: false,
+    privateContributions: restrictedCount,
   };
 }
 

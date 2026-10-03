@@ -6,6 +6,7 @@ const now = new Date("2026-10-01T12:00:00Z");
 
 test("GraphQL contribution totals use the returned calendar days", () => {
   const activity = parseContributions({ data: { user: { contributionsCollection: {
+    restrictedContributionsCount: 3,
     contributionCalendar: { weeks: [{ contributionDays: [
       { date: "2026-09-30", contributionCount: 2, contributionLevel: "SECOND_QUARTILE" },
       { date: "2026-10-01", contributionCount: 0, contributionLevel: "NONE" },
@@ -13,6 +14,7 @@ test("GraphQL contribution totals use the returned calendar days", () => {
   } } } }, now);
   assert.equal(activity.source, "contributions");
   assert.equal(activity.total, 2);
+  assert.equal(activity.privateContributions, 3);
   assert.deepEqual(activity.days.map((day) => day.level), [2, 0]);
 });
 
