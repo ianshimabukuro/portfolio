@@ -76,6 +76,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <span>{project.role}</span>
             <span>{project.period}</span>
           </div>
+          {project.appStoreUrl && <a className="project-store-link" href={project.appStoreUrl} target="_blank" rel="noopener noreferrer">View on the App Store</a>}
         </section>
 
         <section className="content-grid" aria-label="Case study details">

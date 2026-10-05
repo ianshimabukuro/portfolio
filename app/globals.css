@@ -57,6 +57,8 @@ button { cursor: pointer; font: inherit; }
 }
 
 .eyebrow, .project-meta { color: var(--muted); font-family: var(--font-code); font-size: 0.82rem; }
+.project-store-link { color: var(--purple); display: inline-flex; font-family: var(--font-code); font-size: 0.78rem; font-weight: 700; margin-top: 22px; text-decoration: none; }
+.project-store-link:hover { text-decoration: underline; }
 .eyebrow { color: var(--purple); font-weight: 600; margin: 0 0 18px; text-transform: uppercase; }
 .lede, .content-grid p { color: var(--ink-soft); font-size: clamp(1rem, 1.7vw, 1.2rem); line-height: 1.6; }
 .lede { margin-bottom: 26px; max-width: 760px; }

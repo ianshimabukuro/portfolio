@@ -46,12 +46,12 @@ export default function GitHubActivityPanel() {
   const activeDays = activity.days.filter((day) => day.count > 0).length;
 
   return <div className={`activity-content ${contributions ? "two-month-activity" : "month-activity"}`}>
+    <span className="data-period activity-period">{contributions ? "PAST 60 DAYS" : "PAST 30 DAYS"}</span>
     <div className="activity-summary">
       <div className="activity-stats">
         <p className="activity-count">{activity.total.toLocaleString()}<span>{unit}</span></p>
         {typeof activity.publicRepos === "number" && <p className="repository-count">{activity.publicRepos}<span>public repos</span></p>}
       </div>
-      <span className="data-period">{contributions ? "PAST 60 DAYS" : "PAST 30 DAYS"}</span>
     </div>
     <div className="activity-body">
       <div className="activity-calendar">
@@ -61,10 +61,7 @@ export default function GitHubActivityPanel() {
         </div>
       </div>
       <div className="activity-note">
-        <p>{contributions ? "Contribution activity" : `${activeDays} active ${activeDays === 1 ? "day" : "days"}`}</p>
-        <span>{contributions
-          ? activity.privateContributions ? `${activity.privateContributions} private contributions included.` : "Public contribution activity."
-          : activity.total ? `${activeDays} active ${activeDays === 1 ? "day" : "days"} in 30 days` : "No recent public events"}{activity.limited ? " (latest 300)" : ""}.</span>
+        <p>{`${activeDays} active ${activeDays === 1 ? "day" : "days"}`}</p>
       </div>
     </div>
     <a className="github-profile-link" href={`https://github.com/${profile.github}`} target="_blank" rel="noopener noreferrer">@{profile.github}<ArrowUpRight size={14} /></a>

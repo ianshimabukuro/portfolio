@@ -8,12 +8,12 @@ export const profile = {
 
 // App Store IDs and education are taken from the published portfolio.
 export const apps = [
-  { name: "PaceTank", description: "Pacing for Long Covid", platform: "iPhone & iPad", image: "/apps/pacetank.jpg", url: "https://apps.apple.com/app/id6755208393" },
-  { name: "AirWatch", description: "Breathwork analysis", platform: "Apple Watch", image: "/apps/airwatch.jpg", url: "https://apps.apple.com/app/id6759843454" },
-  { name: "Sleep Vibrations", description: "A gentler way to drift off", platform: "Apple Watch", image: "/apps/sleep-vibrations.jpg", url: "https://apps.apple.com/app/id6754226600" },
-  { name: "Grateful", description: "Daily gratitude journal", platform: "iPhone & iPad", image: "/apps/grateful.jpg", url: "https://apps.apple.com/app/id6749878810" },
-  { name: "Measuring Jug", description: "Kitchen conversions", platform: "iPhone & iPad", image: "/apps/measuring-jug.jpg", url: "https://apps.apple.com/app/id6749343704" },
-  { name: "Boop", description: "Your self-care partner", platform: "iPhone & iPad", image: "/apps/boop.jpg", url: "https://apps.apple.com/us/app/boop-self-improvement-friend/id6779977317" },
+  { name: "PaceTank", slug: "pacetank", description: "Pacing for Long Covid", platform: "iPhone & iPad", image: "/apps/pacetank.jpg", url: "https://apps.apple.com/app/id6755208393" },
+  { name: "AirWatch", slug: "airwatch", description: "Breathwork analysis", platform: "Apple Watch", image: "/apps/airwatch.jpg", url: "https://apps.apple.com/app/id6759843454" },
+  { name: "Sleep Vibrations", slug: "sleep-vibrations", description: "A gentler way to drift off", platform: "Apple Watch", image: "/apps/sleep-vibrations.jpg", url: "https://apps.apple.com/app/id6754226600" },
+  { name: "Grateful", slug: "grateful", description: "Daily gratitude journal", platform: "iPhone & iPad", image: "/apps/grateful.jpg", url: "https://apps.apple.com/app/id6749878810" },
+  { name: "Measuring Jug", slug: "measuring-jug", description: "Kitchen conversions", platform: "iPhone & iPad", image: "/apps/measuring-jug.jpg", url: "https://apps.apple.com/app/id6749343704" },
+  { name: "Boop Pet", slug: "boop", description: "A tiny companion for building consistency", platform: "Apple Watch", image: "/apps/boop-pet.jpg", url: "https://apps.apple.com/us/app/boop-pet/id6746684711" },
 ];
 
 export const education = [
